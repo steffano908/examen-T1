@@ -15,7 +15,8 @@ def ordenBurbuja(lis):
     for i in range(1, n):
         for j in range(n):
             sig = j
-            sig = sig + 1
+            p = 1
+            sig = sig + p
             if sig < n:
                 if lis[j][2] > lis[sig][2]:
                     aux = lis[j]
@@ -33,7 +34,8 @@ def listaEntrenador(tupla):
     num = 1
     for x in tupla:
         print(f'{num}. {x[0]} | {x[1]} | Ataque: {x[2]} | Vida: {x[3]}')
-        num = num + 1
+        p = 1
+        num = num + p
     print()
 
 
@@ -61,7 +63,8 @@ def busquedaBinaria(array, vida):
             break
         elif array[medio][3] < vida:
             menor = medio
-            menor = menor + 1
+            p = 1
+            menor = menor + p
         else:
             mayor = medio
     return pos
@@ -93,7 +96,8 @@ def peleaPokemon(lista, n1, n2):
             p1 = x
         if num == n2:
             p2 = x
-        num = num + 1
+        p = 1
+        num = num + p
     if p1 is None or p2 is None:
         print('El numero es incorrecto')
         return
