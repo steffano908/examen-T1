@@ -2,6 +2,7 @@ import random
 
 listaPokemon = []
 
+
 def crearEntrenador(tupla, nombre, pokemon):
     ataque = random.randint(150, 250)
     vida = random.randint(500, 900)
@@ -10,10 +11,16 @@ def crearEntrenador(tupla, nombre, pokemon):
 
 
 def ordenBurbuja(lis):
-    for i in range(1, len(lis)):
-        for j in range(len(lis) - 1):
-            if lis[j][2] > lis[j + 1][2]:
-                lis[j], lis[j + 1] = lis[j + 1], lis[j]
+    n = len(lis)
+    for i in range(1, n):
+        for j in range(n):
+            sig = j
+            sig = sig + 1
+            if sig < n:
+                if lis[j][2] > lis[sig][2]:
+                    aux = lis[j]
+                    lis[j] = lis[sig]
+                    lis[sig] = aux
     return lis
 
 
@@ -33,17 +40,17 @@ def listaEntrenador(tupla):
 def ordenSeleccion(lis):
     n = len(lis)
     for manoIzq in range(n):
-        ind_min_val = manoIzq
+        menor = manoIzq
         for vista in range(manoIzq, n):
-            if lis[vista][3] < lis[ind_min_val][3]:
-                ind_min_val = vista
+            if lis[vista][3] < lis[menor][3]:
+                menor = vista
         aux = lis[manoIzq]
-        lis[manoIzq] = lis[ind_min_val]
-        lis[ind_min_val] = aux
+        lis[manoIzq] = lis[menor]
+        lis[menor] = aux
     return lis
 
 
-def busquedabinaria(array, vida):
+def busquedaBinaria(array, vida):
     menor = 0
     mayor = len(array)
     pos = None
@@ -54,8 +61,7 @@ def busquedabinaria(array, vida):
             break
         elif array[medio][3] < vida:
             menor = medio
-            p = 1
-            menor = menor + p
+            menor = menor + 1
         else:
             mayor = medio
     return pos
@@ -67,7 +73,7 @@ def borraPorPokemon(tupla, vida):
         return
     ordenSeleccion(tupla)
     print('Lista ordenada por vida')
-    pos = busquedabinaria(tupla, vida)
+    pos = busquedaBinaria(tupla, vida)
     if pos is None:
         print('No se encontro pokemon con esa vida')
         return
